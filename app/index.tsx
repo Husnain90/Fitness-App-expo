@@ -18,6 +18,7 @@ import Checkbox from "expo-checkbox";
 import Google from "@/assets/images/google.svg";
 import Facebook from "@/assets/images/facebook.svg";
 import { Link } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function Index() {
   const [isChecked, setIsChecked] = useState(false);
@@ -33,10 +34,7 @@ export default function Index() {
             Create an Account
           </Text>
         </View>
-        <View
-          className="flex flex-col justify-between"
-          style={{ flex: 1 }}
-        >
+        <View className="flex flex-col justify-between" style={{ flex: 1 }}>
           <Formik
             initialValues={{
               firstName: "",
@@ -66,6 +64,9 @@ export default function Index() {
                     value={values.firstName}
                     Icon={Profile}
                   />
+                  {errors.firstName && touched.firstName && (
+                    <Text className="text-red-500">{errors.firstName}</Text>
+                  )}
                   <View className="mb-[15px]" />
                   <CustomInput
                     placeHolder="Last Name"
@@ -74,6 +75,9 @@ export default function Index() {
                     value={values.lastName}
                     Icon={Profile}
                   />
+                  {errors.lastName && touched.lastName && (
+                    <Text className="text-red-500">{errors.lastName}</Text>
+                  )}
                   <View className="mb-[15px]" />
                   <CustomInput
                     placeHolder="Email"
@@ -82,6 +86,9 @@ export default function Index() {
                     value={values.email}
                     Icon={Message}
                   />
+                  {errors.email && touched.email && (
+                    <Text className="text-red-500">{errors.email}</Text>
+                  )}
                   <View className="mb-[15px]" />
                   <CustomInput
                     placeHolder="Password"
@@ -90,7 +97,9 @@ export default function Index() {
                     value={values.password}
                     Icon={Lock}
                   />
-
+                  {errors.password && touched.password && (
+                    <Text className="text-red-500">{errors.password}</Text>
+                  )}
                   <View className="mb-[10px] " />
                   <View className=" flex flex-row items-center gap-[10px]">
                     <Checkbox
@@ -112,13 +121,17 @@ export default function Index() {
             )}
           </Formik>
           <View>
-            <Pressable
-              className="w-full bg-slate-400 h-14 flex items-center justify-center rounded-full "
-              onPress={() => console.log("presss")}
-            >
-              <Text className="text-base leading-6 font-bold text-white">
-                Register
-              </Text>
+            <Pressable onPress={(PRES) => console.log("presss")}>
+              <LinearGradient
+                colors={["#9DCEFF", "#92A3FD"]}
+                className="w-full bg-slate-400 h-14 flex items-center justify-center rounded-full "
+                start={[0.1, 0.1]}
+                end={[1, 0]}
+              >
+                <Text className="text-base leading-6 font-bold text-white">
+                  Register
+                </Text>
+              </LinearGradient>
             </Pressable>
           </View>
         </View>

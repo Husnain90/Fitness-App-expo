@@ -1,7 +1,7 @@
 import React from "react";
 import { Text } from "react-native";
 import { Pressable, View } from "react-native";
-import LinearGradient from "react-native-linear-gradient";
+
 
 type Props = {
   title: string;
