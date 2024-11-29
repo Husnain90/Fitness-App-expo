@@ -7,6 +7,11 @@ export default function RootLayout() {
     <CustomFonts>
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="goalScreen" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="sleep/sleepScreen"
+          options={{ headerShown: false }}
+        />
       </Stack>
     </CustomFonts>
   );

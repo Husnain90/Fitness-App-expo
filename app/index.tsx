@@ -17,11 +17,12 @@ import { useState } from "react";
 import Checkbox from "expo-checkbox";
 import Google from "@/assets/images/google.svg";
 import Facebook from "@/assets/images/facebook.svg";
-import { Link } from "expo-router";
+import { Link, router, useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
 
 export default function Index() {
   const [isChecked, setIsChecked] = useState(false);
+  const router = useRouter()
   const register = () => {
     console.log("clicked");
   };
@@ -43,8 +44,10 @@ export default function Index() {
               password: "",
             }}
             validationSchema={loginValidationScehma}
-            onSubmit={(values) => {
+            onSubmit={(values, errors) => {
               console.log("Form values", values);
+              console.log("Formik state:", { values, errors });
+              router.push("/goalScreen");
             }}
           >
             {({
@@ -117,23 +120,23 @@ export default function Index() {
                     </View>
                   </View>
                 </View>
+                <View>
+                  <Pressable onPress={()=>{router.push("/goalScreen")}}>
+                    <LinearGradient
+                      colors={["#9DCEFF", "#92A3FD"]}
+                      className="w-full bg-slate-400 h-14 flex items-center justify-center rounded-full "
+                      start={[0.1, 0.1]}
+                      end={[1, 0]}
+                    >
+                      <Text className="text-base leading-6 font-bold text-white">
+                        Register
+                      </Text>
+                    </LinearGradient>
+                  </Pressable>
+                </View>
               </>
             )}
           </Formik>
-          <View>
-            <Pressable onPress={(PRES) => console.log("presss")}>
-              <LinearGradient
-                colors={["#9DCEFF", "#92A3FD"]}
-                className="w-full bg-slate-400 h-14 flex items-center justify-center rounded-full "
-                start={[0.1, 0.1]}
-                end={[1, 0]}
-              >
-                <Text className="text-base leading-6 font-bold text-white">
-                  Register
-                </Text>
-              </LinearGradient>
-            </Pressable>
-          </View>
         </View>
         <View className="flex flex-row items-center my-2">
           <View className="flex-1 h-px bg-gray_3"></View>
